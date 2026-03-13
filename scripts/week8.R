@@ -61,20 +61,19 @@ ggplot(corr_long, aes(x=Var1,y=Var2,fill=value))+
   scale_fill_gradient2( low="blue", mid="white", high="red", midpoint=0)+
   theme_minimal()+
   labs(title="Correlation Heatmap of mtcars")
-
 #Heat Map with Values Displayed
-ggplot(corr_long,aes(x=Var1,y=Var2,fill=values))+
+ggplot(corr_long,aes(x=Var1,y=Var2,fill=value))+
   geom_tile()+
   geom_text(aes(label=round(value, 2)))+
   scale_fill_gradient2( low="blue", mid="white", high="red", midpoint=0 )+
-  theme_minimal()+
-  
-  
-  #Advanced Heat Map using pheatmap
-  install.packages("pheatmap")
+  theme_minimal()
+
+#Advanced Heat Map using pheatmap
+#install.packages("pheatmap") 
 library(pheatmap)
 pheatmap(
-  cor(mtcars[,sapply(mtcars,is.numeric)]),
-  display_numbers = round(corr_matrix,2),
-  main = "Advanced Correlation Heatmap"
+  cor(mtcars[, sapply(mtcars,is.numeric)]),
+  display_numbers=round(corr_matrix,2),
+  main="Advanced Correlation Heatmap"
 )
+
